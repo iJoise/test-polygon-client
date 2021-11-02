@@ -1,0 +1,35 @@
+.select {
+  margin-bottom: 5px;
+  position: relative;
+  font-size: 16px;
+
+  &__error {
+    height: 15px;
+    span {
+      font-size: 13px;
+      color: red;
+    }
+  }
+}
+
+.item {
+  outline: none;
+}
+
+.label {
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(36, 37, 74, 0.5);
+  span {
+    color: red;
+  }
+
+  &__error {
+    color: red;
+  }
+
+  &__confirm {
+    color: var(--independence)
+  }
+}

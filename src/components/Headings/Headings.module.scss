@@ -1,0 +1,21 @@
+@import '../../style/variables.module';
+
+.title {
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 39px;
+  font-family: var(--font-famaly);
+  text-align: center;
+  padding-bottom: 35px;
+  letter-spacing: 1.5px;
+}
+
+.subtitle {
+  font-family: var(--font-famaly);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 33px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  padding-bottom: 35px;
+}

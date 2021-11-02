@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.sass-cache
+index.module.css*
+index.module.css.map*

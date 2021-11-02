@@ -1,0 +1,35 @@
+.button {
+  border: none;
+  width: 100%;
+
+  &:disabled {
+    opacity: 0.6;
+  }
+
+  &__rounded {
+    height: 35px;
+    border-radius: 30px;
+    font-size: 16px;
+  }
+
+  &__default {
+    height: 33px;
+    border-radius: 2px;
+    font-size: 14px;
+  }
+
+  &__blue {
+    background: var(--independence);
+    color: white;
+  }
+
+  &__light_blue {
+    background: #D7D8EF;
+    color: #7a4c7e
+  }
+  
+  &__red {
+    background-color: #c7517b;
+    color: white;
+  }
+}

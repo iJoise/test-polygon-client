@@ -1,0 +1,52 @@
+.error_block {
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 40%;
+  background: #F5E9E9;
+  border: 2px solid var(--terra-cotta);
+  box-sizing: border-box;
+  border-radius: 8px;
+  height: 60px;
+  padding: 20px;
+  color: var(--terra-cotta);
+  font-size: 16px;
+  transition: 0.5s all cubic-bezier(0.99, -0.55, 0.265, 1.55);
+  @media (max-width: 768px) {
+    width: 50%;
+  }
+}
+
+.visible {
+  visibility: visible;
+  bottom: 20px;
+}
+
+.hidden {
+  visibility: hidden;
+  bottom: -200px;
+}
+
+.error_icon {
+  display: inline-block;
+  flex: 1 1 23px;
+  text-align: center;
+  height: 20px;
+  background: #FFC8C8;
+  border-radius: 50%;
+  margin-right: 15px;
+  font-size: 16px;
+  line-height: 22px;
+  color: var(--terra-cotta);
+}
+
+.error_message {
+  flex: 1 1 100%;
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+}
