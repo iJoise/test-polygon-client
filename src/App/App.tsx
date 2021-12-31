@@ -17,7 +17,6 @@ import {Form} from "../pages/Profile/Form/Form";
 export const App = () => {
   const dispatch = useAppDispatch()
   const status = useAppSelector(state => state.app.appStatus)
-  const isAuth = useAppSelector(state => state.auth.isAuth)
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -25,17 +24,11 @@ export const App = () => {
     }
   }, [dispatch])
 
-  // useEffect(() => {
-  //   window.addEventListener("popstate",function(e){
-  //     alert('yeees!');
-  //   },false);
-  // }, [])
-
   if (status === 'loading') return <Preloader/>
 
   return (
     <div className={st.App}>
-      {isAuth && <Header/>}
+      <Header/>
       <Switch>
         <Route exact path={PATH.LOGIN} render={() => <Login/>}/>
         <Route exact path={PATH.REGISTRATION} render={() => <Registration/>}/>

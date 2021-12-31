@@ -1,14 +1,10 @@
-import {Nullable, OptionsItem} from "../../types";
+import {Nullable} from "../../types";
 
-export type PayloadAddressType = {
-  query: string
-  type: SearchType
-}
 
 export type SearchType = 'city' | 'street' | 'house' | 'flat'
 
 export type DadataInitialStateType = {
-  kladr: Nullable<string>
-  cityList: OptionsItem[]
-  streetList: OptionsItem[]
+  kladrCity: Nullable<string>
+  kladrStreet: Nullable<string>
+  kladrHouse: Nullable<string>
 }

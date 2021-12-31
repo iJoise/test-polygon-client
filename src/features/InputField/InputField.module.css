@@ -1,0 +1,59 @@
+.inputField {
+  margin-bottom: 5px;
+  position: relative;
+  font-family: var(--ibm); }
+  .inputField__error {
+    height: 15px; }
+    .inputField__error span {
+      font-size: 13px;
+      color: red; }
+  .inputField__confirm {
+    position: absolute;
+    top: 20px;
+    right: 0; }
+    .inputField__confirm_class {
+      position: absolute;
+      top: 28px;
+      right: 10px; }
+
+.input {
+  width: 100%;
+  border: none;
+  background-color: inherit;
+  border-bottom: 2px solid rgba(36, 37, 74, 0.5);
+  padding: 0 0 5px 15px;
+  font-size: 18px; }
+  .input:focus {
+    outline: none; }
+  .input::placeholder {
+    font-size: 14px; }
+  .input__class {
+    border: 1px solid #CCCCCC;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px; }
+  .input__error {
+    border-bottom: 2px solid red; }
+    .input__error_class {
+      background-color: #F5E7E9; }
+  .input__confirm {
+    border-bottom: 2px solid var(--independence); }
+    .input__confirm_class {
+      background-color: var(--green-sheen-alpha); }
+  .input__mask::placeholder {
+    font-size: 18px; }
+  .input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #F9F9FE inset !important; }
+
+.label {
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(36, 37, 74, 0.5); }
+  .label__error {
+    color: red; }
+  .label__confirm {
+    color: var(--independence); }
+
+/*# sourceMappingURL=InputField.module.css.map */

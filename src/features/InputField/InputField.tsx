@@ -44,30 +44,32 @@ export const InputField: React.FC<InputFieldPropsType> = React.memo((
   return (
     <div className={`${s.inputField}`}>
       <label className={labelClassName}>{label}</label>
-      {!mask &&
-      <input
-         role="presentation"
-         ref={innerRef}
-         autoComplete="{something}"
-         className={inputClassName}
-         value={value}
-         type={type}
-         data-error={error}
-         {...restProps}
-      />}
-      {mask &&
-      <InputMask
-         role="presentation"
-         autoComplete="{something}"
-         mask={mask}
-         value={value}
-         className={inputClassName}
-         type={type}
-         data-error={error}
-         {...restProps}/>}
+      {!mask ? (
+        <input
+          role="presentation"
+          ref={innerRef}
+          autoComplete="{something}"
+          className={inputClassName}
+          value={value}
+          type={type}
+          data-error={error}
+          {...restProps}
+        />
+      ) : (
+        <InputMask
+          role="presentation"
+          autoComplete="{something}"
+          mask={mask}
+          value={value}
+          className={inputClassName}
+          type={type}
+          data-error={error}
+          {...restProps}
+        />
+      )}
       <div className={className ? s.inputField__confirm_class : s.inputField__confirm}>
-        {checkField() ? <ConfirmIcon/> : ''}
-        {error ? <ErrorIcon/> : ''}
+        {checkField() && <ConfirmIcon/>}
+        {error && <ErrorIcon/>}
       </div>
       <div className={s.inputField__error}>
         {error && <span className={errorClassName}>{error}</span>}

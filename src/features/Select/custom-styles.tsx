@@ -1,4 +1,24 @@
-import {StylesConfig} from "react-select";
+import {components, DropdownIndicatorProps, MenuListProps, StylesConfig} from "react-select";
+import {ConfirmIcon} from "../../assets/icon/ConfirmIcon";
+import {ErrorIcon} from "../../assets/icon/ErrorIcon";
+import React from "react";
+
+export const MenuList = (props: MenuListProps) => {
+  return (
+    <components.MenuList {...props}>
+      <div style={menuHeaderStyle}>Выберите вариант из выпадающего списка</div>
+      {props.children}
+    </components.MenuList>
+  );
+};
+export const DropdownIndicator = (props: DropdownIndicatorProps) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      {props.hasValue && !props.selectProps["aria-errormessage"] && <ConfirmIcon/>}
+      {props.selectProps["aria-errormessage"] && <ErrorIcon/>}
+    </components.DropdownIndicator>
+  );
+};
 
 export const menuHeaderStyle = {
   padding: '10px 12px',

@@ -1,0 +1,26 @@
+.select {
+  margin-bottom: 5px;
+  position: relative;
+  font-size: 16px; }
+  .select__error {
+    height: 15px; }
+    .select__error span {
+      font-size: 13px;
+      color: red; }
+
+.item {
+  outline: none; }
+
+.label {
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(36, 37, 74, 0.5); }
+  .label span {
+    color: red; }
+  .label__error {
+    color: red; }
+  .label__confirm {
+    color: var(--independence); }
+
+/*# sourceMappingURL=CustomSelect.module.css.map */

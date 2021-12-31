@@ -17,14 +17,14 @@ export const WorkInfo: React.FC<WorkInfoPropsType> = () => {
   const [focus, setFocus] = useState(false);
   const focusRef: any = useRef(null);
 
-
   useEffect(() => {
     checkFocusError(focusRef, setFocus, focus, dispatch).then()
   }, [focus, dispatch])
 
   const initialValues: WorkInfoInitialValuesType = {
     city: '',
-    street: ''
+    street: '',
+    house: ''
   }
 
   return (
@@ -40,9 +40,11 @@ export const WorkInfo: React.FC<WorkInfoPropsType> = () => {
         }}
       >
         {({
-            values, errors, touched,
-            handleChange, handleBlur, handleSubmit,
+            errors,
+            touched,
+            handleSubmit,
             isSubmitting,
+            values
           }) => (
           <form onSubmit={handleSubmit} autoComplete='something' ref={focusRef}>
             <Field
@@ -53,14 +55,24 @@ export const WorkInfo: React.FC<WorkInfoPropsType> = () => {
               error={touched.city ? errors.city : ''}
               touched={touched.city}
             />
-            <Field
-              component={AsyncCustomSelect}
-              label={'Введите вашу улицу'}
-              placeholder={'Например: Ленина'}
-              name={'street'}
-              error={touched.street ? errors.street : ''}
-              touched={touched.street}
-            />
+            {values.city && <>
+               <Field
+                  component={AsyncCustomSelect}
+                  label={'Введите вашу улицу'}
+                  placeholder={'Например: Ленина'}
+                  name={'street'}
+                  error={touched.street ? errors.street : ''}
+                  touched={touched.street}
+               />
+               <Field
+                  component={AsyncCustomSelect}
+                  label={'Введите ваш номер дома'}
+                  placeholder={'Например: 23'}
+                  name={'house'}
+                  error={touched.house ? errors.house : ''}
+                  touched={touched.house}
+               />
+            </>}
 
             <Button
               disabled={isSubmitting || status === 'error'}

@@ -1,0 +1,15 @@
+.container {
+  height: 100vh;
+  max-width: 1140px;
+  margin: 0 auto; }
+
+.profile_container {
+  height: calc(100vh - 60px); }
+
+.blue {
+  background-color: lightskyblue; }
+
+.red {
+  background-color: red; }
+
+/*# sourceMappingURL=common.module.css.map */

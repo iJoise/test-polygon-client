@@ -1,6 +1,6 @@
 import {Dispatch} from "@reduxjs/toolkit";
 import {handleAppError} from "../store/appSlice/appSlice";
-import {SearchType} from "../store/dadataSlice/dadata-slice-types";
+import {DadataInitialStateType, SearchType} from "../store/dadataSlice/dadata-slice-types";
 import {Dadata} from "../api/types/dadata-types";
 import {OptionsItem} from "../types";
 
@@ -36,12 +36,12 @@ export const normalizedSubmitData = (data: { [value: string]: string }) => {
   return result
 }
 
-export const createAddressPayload = (type: SearchType, query: string, kladr: string = ''): Dadata.DadataAddrRequest => {
+export const createAddressPayload = (type: SearchType, query: string, kladr: DadataInitialStateType): Dadata.DadataAddrRequest => {
   const payload: Dadata.DadataAddrRequest = {
     query,
     from_bound: {value: 'city'},
     to_bound: {value: 'settlement'},
-    locations: [{kladr_id: `${kladr}`}],
+    locations: [{kladr_id: ''}],
     count: 20,
     restrict_value: false
   }
@@ -55,13 +55,15 @@ export const createAddressPayload = (type: SearchType, query: string, kladr: str
         ...payload,
         to_bound: {value: 'street'},
         from_bound: {value: 'street'},
-        restrict_value: true
+        locations: [{kladr_id: `${kladr.kladrCity}`}],
+        restrict_value: false
       }
     case "house":
       return {
         ...payload,
         to_bound: {value: 'house'},
         from_bound: {value: 'house'},
+        locations: [{kladr_id: `${kladr.kladrStreet ? kladr.kladrStreet : kladr.kladrCity}`}],
       }
     default:
       return {
@@ -102,6 +104,18 @@ export const normalizedDadataStreetResponse = ({suggestions}: Dadata.DadataAddrR
       value: `${el.data.street_type_full} ${el.data.street}`,
       label: `${el.data.street_type_full} ${el.data.street}`,
       placement: el.data.kladr_id,
+    })
+  })
+  return options
+}
+
+export const normalizedDadataHouseResponse = ({suggestions}: Dadata.DadataAddrResponse): OptionsItem[] => {
+  const options: OptionsItem[] = []
+  suggestions.forEach((el,) => {
+    options.push({
+      value: `${el.data.house_type_full} ${el.data.house}`,
+      label: `${el.data.house_type_full} ${el.data.house}`,
+      placement: el.data.kladr_id
     })
   })
   return options

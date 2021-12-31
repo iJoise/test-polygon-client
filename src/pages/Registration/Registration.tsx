@@ -34,7 +34,14 @@ export const Registration: FC = () => {
 
   if (isAuth) return <Redirect to={PATH.PROFILE}/>
 
-  const initialValues: RegistrationType = {[emailReg]: '', password: '', [nameReg]: '', [surnameReg]: '', phone: ''}
+  const initialValues: RegistrationType = {
+    [emailReg]: '',
+    [nameReg]: '',
+    [surnameReg]: '',
+    password: '',
+    phone: ''
+  }
+
   return (
     <div className={com.container}>
       <AuthModal subtitle={'Registration'} goBack>

@@ -1,4 +1,4 @@
-import {useRef} from "react";
+import {useCallback, useRef} from "react";
 
 
 export function useDebounce<F extends ((...args: any) => any)>(
@@ -6,7 +6,7 @@ export function useDebounce<F extends ((...args: any) => any)>(
 ) {
   const timer = useRef<ReturnType<typeof setTimeout>>();
 
-  return (...args: any) => {
+  return useCallback((...args) => {
     if (timer.current) {
       clearTimeout(timer.current)
     }
@@ -16,5 +16,5 @@ export function useDebounce<F extends ((...args: any) => any)>(
       }, delay)
     })
 
-  }
+  }, [callback, delay]);
 }

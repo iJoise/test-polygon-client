@@ -1,32 +1,13 @@
-import React, {useCallback, useMemo} from 'react';
-import Select, {components, DropdownIndicatorProps, MenuListProps, Options, PropsValue} from 'react-select';
-import {ConfirmIcon} from "../../../assets/icon/ConfirmIcon";
+import React, {FocusEvent, useMemo} from 'react';
+import Select, {Options, PropsValue} from 'react-select';
 import s from "../CustomSelect.module.scss";
-import {ErrorIcon} from "../../../assets/icon/ErrorIcon";
-import {customStyles, menuHeaderStyle} from "../custom-styles";
+import {customStyles, DropdownIndicator, MenuList} from "../custom-styles";
 import {OptionsItem} from "../../../types";
 import {FieldProps} from "formik";
-
-const MenuList = (props: MenuListProps) => {
-  return (
-    <components.MenuList {...props}>
-      <div style={menuHeaderStyle}>Выберите вариант из выпадающего списка</div>
-      {props.children}
-    </components.MenuList>
-  );
-};
-const DropdownIndicator = (props: DropdownIndicatorProps) => {
-  return (
-    <components.DropdownIndicator {...props}>
-      {props.hasValue && <ConfirmIcon/>}
-      {props.selectProps["aria-errormessage"] && <ErrorIcon/>}
-    </components.DropdownIndicator>
-  );
-};
+import {sleep} from "../../../utils/forms-helper";
 
 interface CustomSelectProps extends FieldProps {
   options: Options<OptionsItem>;
-  isMulti?: boolean;
   className?: string;
   placeholder?: string;
   label: string
@@ -45,7 +26,6 @@ export const CustomSelect = React.memo((
     label,
     error,
     touched,
-    isMulti = false,
     state,
     setState
   }: CustomSelectProps) => {
@@ -54,29 +34,24 @@ export const CustomSelect = React.memo((
   const labelClassName = `${s.label} ${checkField() ? s.label__confirm : ''}`
   const selectClassName = `${s.item} ${error ? s.item__error : ''}`
 
-  const onChange = useCallback((option: PropsValue<OptionsItem | OptionsItem[]>) => {
-    form.setFieldValue(
-      field.name,
-      isMulti
-        ? (option as OptionsItem[]).map((item: OptionsItem) => item.value)
-        : (option as OptionsItem).value
-    );
+  const onChange = (option: PropsValue<OptionsItem | OptionsItem[]>) => {
+    form.setFieldValue(field.name, (option as OptionsItem).value);
     field.name === state && setState && setState((option as OptionsItem).value)
-  }, [field.name, form, isMulti, setState, state]);
+  }
 
-  const onBlurHandler = useCallback(() => {
+  const onBlurHandler = async (e: FocusEvent) => {
+    e.preventDefault()
+    await sleep(100)
     form.setFieldTouched(field.name)
-  },[field, form])
+  }
 
   const getValue = useMemo(() => {
     if (options) {
-      return isMulti
-        ? options.filter(option => field.value.indexOf(option.value) >= 0)
-        : options.find(option => option.value === field.value);
+      return  options.find(option => option.value === field.value);
     } else {
-      return isMulti ? [] : ("" as any);
+      return ("" as any);
     }
-  }, [field.value, options, isMulti]);
+  }, [field.value, options]);
 
   return (
     <div className={s.select}>

@@ -1,0 +1,35 @@
+:root {
+  --font-famaly: 'Niconne', cursive;
+  --bebas: 'Bebas Neue', cursive;
+  --apricot: #FFCDB2;
+  --melon: #FFB4A2;
+  --pastel-pink: #E5989B;
+  --english-lavender: #B5838D;
+  --old-lavender: #6d6875;
+  --eggshell: #F4F1DE;
+  --terra-cotta: #E07A5F;
+  --independence: #3D405B;
+  --green-sheen: #81B29A;
+  --deep-shampagne: #F2CC8F;
+  --green-sheen-alpha: #D5E3E0;
+  --ibm: 'IBM Plex Serif', serif; }
+
+.title {
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 39px;
+  font-family: var(--font-famaly);
+  text-align: center;
+  padding-bottom: 35px;
+  letter-spacing: 1.5px; }
+
+.subtitle {
+  font-family: var(--font-famaly);
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 33px;
+  text-align: center;
+  letter-spacing: 1.5px;
+  padding-bottom: 35px; }
+
+/*# sourceMappingURL=Headings.module.css.map */
