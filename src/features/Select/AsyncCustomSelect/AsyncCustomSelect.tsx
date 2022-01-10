@@ -45,14 +45,6 @@ export const AsyncCustomSelect = React.memo((
   const dispatch = useAppDispatch()
   const selectRef = useRef<Select<unknown, boolean, GroupBase<unknown>>>(null)
 
-  useEffect(() => {
-    if (error && field.name) {
-      form.setFieldValue(field.name, '')
-      selectRef.current?.clearValue()
-    }
-    //eslint-disable-next-line
-  }, [error])
-
   const loadOptions = async (value: string, callback: (options: OptionsOrGroups<unknown, GroupBase<unknown>>) => void) => {
     const data = createAddressPayload(field.name as SearchType, value, kladr)
     const response = await DadataService.fetchAddress(data)
@@ -77,6 +69,17 @@ export const AsyncCustomSelect = React.memo((
   const onChange = (newValue: any, {action}: ActionMeta<unknown>) => {
     if (action === 'clear' || action === 'pop-value') {
       form.setFieldValue(field.name, '')
+      switch (field.name) {
+        case 'city':
+          dispatch(setKladrCity(''))
+          break
+        case 'street':
+          dispatch(setKladrStreet(''))
+          break
+        case 'house':
+          dispatch(setKladrHouse(''))
+          break
+      }
     }
     if (newValue && newValue.value) {
       form.setFieldValue(field.name, newValue.value)
@@ -99,6 +102,14 @@ export const AsyncCustomSelect = React.memo((
     await sleep(100)
     form.setFieldTouched(field.name)
   }
+
+  useEffect(() => {
+    if (error && field.name) {
+      form.setFieldValue(field.name, '')
+      selectRef.current?.clearValue()
+    }
+    //eslint-disable-next-line
+  }, [error])
 
   return (
     <div className={s.select}>

@@ -13,6 +13,7 @@ import {Header} from "../components/Header/Header";
 import {Users} from "../pages/Profile/Users/Users";
 import st from './App.module.scss'
 import {Form} from "../pages/Profile/Form/Form";
+import {Snow} from "../features/Snow/Snow";
 
 export const App = () => {
   const dispatch = useAppDispatch()
@@ -38,6 +39,7 @@ export const App = () => {
         <Redirect from={'*'} to={PATH.PROFILE}/>
       </Switch>
       <Error />
+      <Snow/>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export const $api = axios.create({
   baseURL: API_URL
 })
 
-const token = '4796a1d6394e4b8c879ae29cd0d5b46f0339c0ff'
+export const token = '4796a1d6394e4b8c879ae29cd0d5b46f0339c0ff'
 
 export const daData = axios.create({
   baseURL: DADATA_URL,

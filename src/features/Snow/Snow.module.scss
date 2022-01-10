@@ -1,0 +1,46 @@
+.snow {
+  --animation-name: snowfall;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  font-size: 17px;
+}
+
+.snow__flake {
+  position: relative;
+  top: -1.5em;
+  color: #c1dcec;
+  -webkit-animation-name: snowfall;
+  animation-name: snowfall;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(0)
+  }
+  to {
+    transform: translateY(calc(100vh + 1.5em))
+  }
+}
+@-webkit-keyframes snowfall {
+  0% {
+    transform: translateY(0)
+  }
+  to {
+    transform: translateY(calc(100vh + 1.5em))
+  }
+}
+
+
+

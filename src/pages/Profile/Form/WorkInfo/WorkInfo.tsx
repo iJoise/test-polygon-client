@@ -7,6 +7,7 @@ import {Field, Formik} from "formik";
 import {Button} from "../../../../features/Button/Button";
 import {WorkInfoInitialValuesType, WorkInfoSchema} from "./WorkInfoSchema";
 import {AsyncCustomSelect} from "../../../../features/Select/AsyncCustomSelect/AsyncCustomSelect";
+import 'react-dadata/dist/react-dadata.css';
 
 type WorkInfoPropsType = {}
 
@@ -16,6 +17,7 @@ export const WorkInfo: React.FC<WorkInfoPropsType> = () => {
   const status = useAppSelector(state => state.app.appStatus)
   const [focus, setFocus] = useState(false);
   const focusRef: any = useRef(null);
+  const [state, setState] = useState<any>({});
 
   useEffect(() => {
     checkFocusError(focusRef, setFocus, focus, dispatch).then()
@@ -24,7 +26,7 @@ export const WorkInfo: React.FC<WorkInfoPropsType> = () => {
   const initialValues: WorkInfoInitialValuesType = {
     city: '',
     street: '',
-    house: ''
+    house: '',
   }
 
   return (
@@ -44,7 +46,7 @@ export const WorkInfo: React.FC<WorkInfoPropsType> = () => {
             touched,
             handleSubmit,
             isSubmitting,
-            values
+            values,
           }) => (
           <form onSubmit={handleSubmit} autoComplete='something' ref={focusRef}>
             <Field
